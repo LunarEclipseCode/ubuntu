@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-// import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4';
 import emailjs from '@emailjs/browser';
 
 export class Gedit extends Component {
@@ -58,10 +58,10 @@ export class Gedit extends Component {
             $("#close-gedit").trigger("click");
         })
 
-        // ReactGA.event({
-        //     category: "Send Message",
-        //     action: `${name}, ${subject}, ${message}`
-        // });
+        ReactGA.event({
+            category: "Send Message",
+            action: `${name}, ${subject}, ${message}`
+        });
 
     }
 

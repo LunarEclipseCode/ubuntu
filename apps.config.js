@@ -5,8 +5,7 @@ import { displaySettings } from './components/apps/settings';
 import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
-import { displayAboutUriel } from './components/apps/me';
-import { displayTalks } from './components/apps/me';
+import { displayAboutVivek } from './components/apps/vivek';
 import { displayTerminalCalc } from './components/apps/calc';
 
 const apps = [
@@ -29,13 +28,13 @@ const apps = [
         screen: displayTerminalCalc,
     },
     {
-        id: "about-uriel",
-        title: "About Uriel",
+        id: "about-vivek",
+        title: "About Vivek",
         icon: './themes/Yaru/system/user-home.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
-        screen: displayAboutUriel,
+        screen: displayAboutVivek,
     },
     {
         id: "vscode",
@@ -62,7 +61,7 @@ const apps = [
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
-        screen: displaySpotify,
+        screen: displaySpotify, // India Top 50 Playlist 😅
     },
     {
         id: "settings",
@@ -90,15 +89,6 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayGedit,
-    },
-    {
-        id: "Talks",
-        title: "Talks",
-        icon: './themes/Yaru/system/user-home.png',
-        disabled: false,
-        favourite: true,
-        desktop_shortcut: true,
-        screen: displayTalks,
     },
 ]
 

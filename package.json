@@ -12,11 +12,11 @@
     "node": ">=20.x"
   },
   "dependencies": {
-    "glob" : "11.0.0",
-    "chokidar":"3.6.0",
     "@emailjs/browser": "^4.4.1",
     "autoprefixer": "^10.4.19",
+    "chokidar": "3.6.0",
     "expr-eval": "^2.0.2",
+    "glob": "11.0.0",
     "jquery": "^3.7.1",
     "next": "^14.2.5",
     "postcss": "^8.4.39",

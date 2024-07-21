@@ -1,5 +1,5 @@
 {
-  "name": "urielsalis-portfolio",
+  "name": "Raj's Portfolio",
   "version": "2.0.0",
   "private": true,
   "scripts": {

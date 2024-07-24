@@ -346,36 +346,41 @@ export class Desktop extends Component {
     }
 
     openApp = (objId) => {
-
-        // google analytics
-        // ReactGA.event({
-        //     category: `Open App`,
-        //     action: `Opened ${objId} window`
-        // });
-
         // if the app is disabled
         if (this.state.disabled_apps[objId]) return;
-
+    
+        // If the window is closed, we need to set it to open
+        if (this.state.closed_windows[objId]) {
+            let closed_windows = { ...this.state.closed_windows };
+            closed_windows[objId] = false; // open the app's window
+            this.setState({ closed_windows });
+        }
+    
+        // if the app is minimized, restore it
         if (this.state.minimized_windows[objId]) {
-            // focus this app's window
-            this.focus(objId);
-
             // set window's last position
             var r = document.querySelector("#" + objId);
-            r.style.transform = `translate(${r.style.getPropertyValue("--window-transform-x")},${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
-
-            // tell childs that his app has been not minimised
-            let minimized_windows = this.state.minimized_windows;
+            if (r) {
+                r.style.transform = `translate(${r.style.getPropertyValue("--window-transform-x")},${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
+            }
+    
+            let minimized_windows = { ...this.state.minimized_windows };
             minimized_windows[objId] = false;
-            this.setState({ minimized_windows: minimized_windows });
+            this.setState({ minimized_windows }, () => {
+                this.focus(objId);
+            });
             return;
         }
-
-        //if app is already opened
-        if (this.app_stack.includes(objId)) this.focus(objId);
-        else {
-            let closed_windows = this.state.closed_windows;
-            let favourite_apps = this.state.favourite_apps;
+    
+        // if the app is already opened, just focus on it
+        if (this.app_stack.includes(objId)) {
+            this.focus(objId);
+        } else {
+            // Otherwise, open the app
+            let closed_windows = { ...this.state.closed_windows };
+            let favourite_apps = { ...this.state.favourite_apps };
+    
+            // Update the frequent apps
             var frequentApps = localStorage.getItem('frequentApps') ? JSON.parse(localStorage.getItem('frequentApps')) : [];
             var currentApp = frequentApps.find(app => app.id === objId);
             if (currentApp) {
@@ -387,27 +392,24 @@ export class Desktop extends Component {
             } else {
                 frequentApps.push({ id: objId, frequency: 1 }); // new app opened
             }
-
+    
             frequentApps.sort((a, b) => {
-                if (a.frequency < b.frequency) {
-                    return 1;
-                }
-                if (a.frequency > b.frequency) {
-                    return -1;
-                }
-                return 0; // sort according to decreasing frequencies
+                return b.frequency - a.frequency; // sort according to decreasing frequencies
             });
-
+    
             localStorage.setItem("frequentApps", JSON.stringify(frequentApps));
-
+    
             setTimeout(() => {
                 favourite_apps[objId] = true; // adds opened app to sideBar
-                closed_windows[objId] = false; // openes app's window
-                this.setState({ closed_windows, favourite_apps, allAppsView: false }, this.focus(objId));
-                this.app_stack.push(objId);
+                closed_windows[objId] = false; // open the app's window
+                this.setState({ closed_windows, favourite_apps, allAppsView: false }, () => {
+                    this.focus(objId);
+                    this.app_stack.push(objId);
+                });
             }, 200);
         }
     }
+    
 
     closeApp = (objId) => {
 

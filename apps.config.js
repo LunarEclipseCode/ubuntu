@@ -5,7 +5,7 @@ import { displaySettings } from './components/apps/settings';
 import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
-import { displayAboutUriel } from './components/apps/me';
+import { displayAboutRaj } from './components/apps/me';
 import { displayTalks } from './components/apps/me';
 import { displayTerminalCalc } from './components/apps/calc';
 
@@ -21,7 +21,7 @@ const apps = [
     },
     {
         id: "calc",
-        title: "Calc",
+        title: "Calculator",
         icon: './themes/Yaru/apps/calc.png',
         disabled: false,
         favourite: true,
@@ -29,13 +29,13 @@ const apps = [
         screen: displayTerminalCalc,
     },
     {
-        id: "about-uriel",
-        title: "About Uriel",
+        id: "about-raj",
+        title: "About Raj",
         icon: './themes/Yaru/system/user-home.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
-        screen: displayAboutUriel,
+        screen: displayAboutRaj,
     },
     {
         id: "vscode",

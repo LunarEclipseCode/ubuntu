@@ -5,14 +5,14 @@ export default function Meta() {
     return (
         <Head>
            /* Primary Meta Tags */
-            <title>Uriel Salischiker Portfolio - Senior Software Engineer</title>
+            <title>Raj's Portfolio</title>
             <meta charSet="utf-8" />
-            <meta name="title" content="Uriel Salischiker - Senior Software Engineer" />
+            <meta name="title" content="Raj Datta" />
             <meta name="description"
-                content="Uriel Salischiker's (urielsalis) Personal Portfolio Website." />
-            <meta name="author" content="Uriel Salischiker (urielsalis)" />
+                content="Raj's Portfolio" />
+            <meta name="author" content="Raj Datta (LunarEclipseCode)" />
             <meta name="keywords"
-                content="urielsalis, urielsalis's portfolio, Uriel Salischiker" />
+                content="raj, raj datta, raj's portfolio, raj datta's portfolio, LunarEclipseCode, lunareclipse portfolio" />
             <meta name="robots" content="index, follow" />
             <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="language" content="English" />
@@ -20,32 +20,24 @@ export default function Meta() {
             <meta name="theme-color" content="#E95420" />
 
             /* Search Engine */
-            <meta name="image" content="images/logos/fevicon.png" />
+            <meta name="image" content="images/logos/favicon.png" />
             /* Schema.org for Google */
-            <meta itemProp="name" content="Uriel Salischiker - Senior Software Engineer" />
+            <meta itemProp="name" content="Raj Datta" />
             <meta itemProp="description"
-                content="Uriel Salischiker's (urielsalis) Personal Portfolio Website." />
-            <meta itemProp="image" content="images/logos/fevicon.png" />
-            /* Twitter */
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:title" content="Uriel Salischiker - Senior Software Engineer" />
-            <meta name="twitter:description"
-                content="Uriel Salischiker's (urielsalis) Personal Portfolio Website." />
-            <meta name="twitter:site" content="urielsalis" />
-            <meta name="twitter:creator" content="urielsalis" />
-            <meta name="twitter:image:src" content="images/logos/logo_1024.png" />
-            /* Open Graph general (Facebook, Pinterest & Google+) */
-            <meta name="og:title" content="Uriel Salischiker - Senior Software Engineer" />
+                content="Raj's Portfolio" />
+            <meta itemProp="image" content="images/logos/favicon.png" />
+            /* Open Graph general */
+            <meta name="og:title" content="Raj Datta" />
             <meta name="og:description"
-                content="Uriel Salischiker's (urielsalis) Personal Portfolio Website." />
-            <meta name="og:image" content="images/logos/logo_1200.png" />
-            <meta name="og:url" content="http://urielsalis.com/" />
-            <meta name="og:site_name" content="Uriel Salischiker Personal Portfolio" />
+                content="Raj's Portfolio" />
+            <meta name="og:image" content="images/logos/favicon.png" />
+            <meta name="og:url" content="http://linux.raj-datta.com/" />
+            <meta name="og:site_name" content="Raj's Portfolio" />
             <meta name="og:locale" content="en_US" />
             <meta name="og:type" content="website" />
 
-            <link rel="icon" href="images/logos/fevicon.svg" />
-            <link rel="apple-touch-icon" href="images/logos/logo.png" />
+            <link rel="icon" href="images/logos/favicon.png" />
+            <link rel="apple-touch-icon" href="images/logos/favicon.png" />
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" as="style" />
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"></link>
         </Head>

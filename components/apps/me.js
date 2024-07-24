@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import ReactGA from 'react-ga4';
 
-export class AboutUriel extends Component {
+export class AboutRaj extends Component {
 
     constructor(props) {
         super(props);
@@ -45,27 +45,27 @@ export class AboutUriel extends Component {
         return (
             <>
                 <div id="about" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "about" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="about uriel" src="./themes/Yaru/status/about.svg" />
+                    <img className=" w-3 md:w-4" alt="about raj" src="./themes/Yaru/status/about.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
                 </div>
                 <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="uriel' education" src="./themes/Yaru/status/education.svg" />
+                    <img className=" w-3 md:w-4" alt="raj's education" src="./themes/Yaru/status/education.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
                 </div>
                 <div id="skills" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "skills" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="uriel' skills" src="./themes/Yaru/status/skills.svg" />
+                    <img className=" w-3 md:w-4" alt="raj's skills" src="./themes/Yaru/status/skills.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Skills</span>
                 </div>
                 <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="uriel' projects" src="./themes/Yaru/status/projects.svg" />
+                    <img className=" w-3 md:w-4" alt="raj's projects" src="./themes/Yaru/status/projects.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
                 </div>
-                <div id="talks" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "talks" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="uriel' talks" src="./themes/Yaru/status/audio-headphones-symbolic.svg" />
+                {/* <div id="talks" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "talks" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="raj's talks" src="./themes/Yaru/status/audio-headphones-symbolic.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Talks</span>
-                </div>
+                </div> */}
                 <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
-                    <img className=" w-3 md:w-4" alt="uriel's resume" src="./themes/Yaru/status/download.svg" />
+                    <img className=" w-3 md:w-4" alt="raj's resume" src="./themes/Yaru/status/download.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Resume</span>
                 </div>
             </>
@@ -94,34 +94,34 @@ export class AboutUriel extends Component {
     }
 }
 
-export default AboutUriel;
+export default AboutRaj;
 
-export const displayAboutUriel = () => {
-    return <AboutUriel default={"about"}/>;
+export const displayAboutRaj = () => {
+    return <AboutRaj default={"about"}/>;
 }
 
 export const displayTalks = () => {
-    return <AboutUriel default={"talks"}/>;
+    return <AboutRaj default={"talks"}/>;
 }
 
 
 function About() {
     return (
         <>
-            <div className="w-20 md:w-28 my-4 bg-white rounded-full">
-                <img className="w-full" src="./images/logos/bitmoji.png" alt="Uriel Salischiker Logo" />
+            <div className="w-20 md:w-28 my-8 rounded-full">
+                <img className="w-full" src="./images/logos/favicon.png" alt="Raj's Logo" />
             </div>
-            <div className=" mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
-                <div>my name is <span className="font-bold">Uriel Salischiker</span> ,</div>
-                <div className="font-normal ml-1">I'm a <span className="text-pink-600 font-bold">Software Engineer!</span></div>
+            <div className="text-lg md:text-2xl text-center px-1">
+                <div>My name is <span className="font-bold">Raj Datta</span>.</div>
+                <div className="font-normal ml-1">I'm <span className="text-pink-600 font-bold">jack of all trades.</span></div>
             </div>
             <div className=" mt-4 relative md:my-8 pt-px bg-white w-32 md:w-48">
                 <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-0"></div>
                 <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-0"></div>
             </div>
             <ul className=" mt-4 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
-                <li className=" list-pc">I'm a <span className=" font-medium">Senior Software Engineer</span> experienced in leading teams and mentoring other engineers! ( Hit me up <a className='text-underline' href='mailto:uriel@urielsalis.com'><u>@uriel@urielsalis.com</u></a> :) )</li>
-                <li className=" mt-3 list-building"> My main tech stack is Kotlin/Java, but I have experience in Python, Go and Typescript.</li>
+                {/* <li className=" list-pc">I'm a <span className=" font-medium">Senior Software Engineer</span> experienced in leading teams and mentoring other engineers!</li> */}
+                <li className=" mt-3 list-building"> My main tech stack is Qiskit/Python, but I have experience in C, RISC-V Assembly, Java, CSS, and OCaml.</li>
                 <li className=" mt-3 list-time"> I have several personal projects in the Minecraft community, on top of discord moderation work</li>
                 <li className=" mt-3 list-star"> Director @ https://givin.gifts !</li>
             </ul>
@@ -141,11 +141,11 @@ function Education() {
             <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
                 <li className="list-disc">
                     <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        FAMAF - UNC
+                        Cornell University
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2016 - 2018</div>
-                    <div className=" text-sm md:text-base">Computer Computer Science</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">Incomplete</div>
+                    <div className=" text-sm md:text-base text-gray-400 mt-0.5">2020 - 2024</div>
+                    <div className=" text-sm md:text-base  text-gray-200  mt-0.5">Major: Engineering Physics and Computer Science</div>
+                    <div className=" text-sm md:text-base text-gray-200 mt-0.5">Minor: English</div>
                 </li>
             </ul>
         </>

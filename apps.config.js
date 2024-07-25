@@ -6,7 +6,7 @@ import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
 import { displayAboutRaj } from './components/apps/me';
-import { displayTalks } from './components/apps/me';
+// import { displayTalks } from './components/apps/me';
 import { displayTerminalCalc } from './components/apps/calc';
 
 const apps = [
@@ -91,15 +91,15 @@ const apps = [
         desktop_shortcut: true,
         screen: displayGedit,
     },
-    {
-        id: "Talks",
-        title: "Talks",
-        icon: './themes/Yaru/system/user-home.png',
-        disabled: false,
-        favourite: true,
-        desktop_shortcut: true,
-        screen: displayTalks,
-    },
+    // {
+    //     id: "Talks",
+    //     title: "Talks",
+    //     icon: './themes/Yaru/system/user-home.png',
+    //     disabled: false,
+    //     favourite: true,
+    //     desktop_shortcut: true,
+    //     screen: displayTalks,
+    // },
 ]
 
 export default apps;

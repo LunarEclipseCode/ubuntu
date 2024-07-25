@@ -4,7 +4,7 @@ import $ from 'jquery';
 export class Trash extends Component {
     constructor() {
         super();
-        this.trashItems = [
+        this.initialTrashItems = [
             {
                 name: "node_modules",
                 icon: "./themes/Yaru/system/folder.png"
@@ -12,14 +12,17 @@ export class Trash extends Component {
         ];
         this.state = {
             empty: false,
-        }
+            trashItems: [...this.initialTrashItems],
+        };
     }
 
     componentDidMount() {
         // get user preference from local-storage
         let wasEmpty = localStorage.getItem("trash-empty");
         if (wasEmpty !== null && wasEmpty !== undefined) {
-            if (wasEmpty === "true") this.setState({ empty: true });
+            if (wasEmpty === "true") {
+                this.setState({ empty: true, trashItems: [] });
+            }
         }
     }
 
@@ -31,8 +34,13 @@ export class Trash extends Component {
     }
 
     emptyTrash = () => {
-        this.setState({ empty: true });
+        this.setState({ empty: true, trashItems: [] });
         localStorage.setItem("trash-empty", true);
+    };
+
+    restoreTrash = () => {
+        this.setState({ empty: false, trashItems: [...this.initialTrashItems] });
+        localStorage.setItem("trash-empty", false);
     };
 
     emptyScreen = () => {
@@ -48,7 +56,7 @@ export class Trash extends Component {
         return (
             <div className="flex-grow ml-4 flex flex-wrap items-start content-start justify-start overflow-y-auto windowMainScreen">
                 {
-                    this.trashItems.map((item, index) => {
+                    this.state.trashItems.map((item, index) => {
                         return (
                             <div key={index} tabIndex="1" onFocus={this.focusFile} onBlur={this.focusFile} className="flex flex-col items-center text-sm outline-none w-16 my-2 mx-4">
                                 <div className="w-16 h-16 flex items-center justify-center">
@@ -67,20 +75,22 @@ export class Trash extends Component {
         return (
             <div className="w-full h-full flex flex-col bg-ub-cool-grey text-white select-none">
                 <div className="flex items-center justify-between w-full bg-ub-warm-grey bg-opacity-40 text-sm">
-                    <span className="font-bold ml-2">Trash</span>
+                    <span className="font-bold ml-2"></span>
                     <div className="flex">
-                        <div className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded text-gray-300">Restore</div>
-                        <div onClick={this.emptyTrash} className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80">Empty</div>
+                        {
+                            this.state.empty
+                                ? <div onClick={this.restoreTrash} className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80">Restore</div>
+                                : <div onClick={this.emptyTrash} className="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80">Empty</div>
+                        }
                     </div>
                 </div>
                 {
-                    (this.state.empty
+                    this.state.empty
                         ? this.emptyScreen()
                         : this.showTrashItems()
-                    )
                 }
             </div>
-        )
+        );
     }
 }
 

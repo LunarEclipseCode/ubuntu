@@ -12,13 +12,12 @@ export class Terminal extends Component {
         this.prev_commands = [];
         this.commands_index = -1;
         this.child_directories = {
-            root: ["books", "projects", "personal-documents", "skills", "languages", "PDPU", "interests"],
-            PDPU: ["Sem-6"],
-            books: ["Eric-Jorgenson_The-Almanack-of-Naval-Ravikant.pdf", "Elon Musk: How the Billionaire CEO of SpaceX.pdf", "The $100 Startup_CHRIS_GUILLEBEAU.pdf", "The_Magic_of_Thinking_Big.pdf"],
-            skills: ["Front-end development", "React.js", "jQuery", "Flutter", "Express.js", "SQL", "Firebase"],
-            projects: ["urielsalis-personal-portfolio", "synonyms-list-react", "economist.com-unlocked", "Improve-Codeforces", "flutter-banking-app", "Meditech-Healthcare", "CPU-Scheduling-APP-React-Native"],
-            interests: ["Software Engineering", "Deep Learning", "Computer Vision"],
-            languages: ["Javascript", "C++", "Java", "Dart"],
+            root: ["books", "projects", "skills", "languages", "interests"],
+            books: ["James Norbury - Big Panda and Tiny Dragon.pdf"],
+            skills: ["Quantum Computing", "Computational Biology", "UI Customization", "Web Scraping"],
+            projects: ["portfolio", "survivor-library-downloader"],
+            interests: ["pokemon", "hot wheels"],
+            languages: ["Python", "Qiskit", "C", "Java", "CSS"],
         };
         this.state = {
             terminal: [],
@@ -185,30 +184,41 @@ export class Terminal extends Component {
             case "cd":
                 if (words.length === 0 || rest === "") {
                     this.current_directory = "~";
-                    this.curr_dir_name = "root"
+                    this.curr_dir_name = "root";
                     break;
                 }
+    
                 if (words.length > 1) {
                     result = "too many arguments, arguments must be <1.";
                     break;
                 }
-
-                if (rest === "personal-documents") {
-                    result = `bash /${this.curr_dir_name} : Permission denied 😏`;
-                    break;
+    
+                let pathParts = rest.split('/');
+                let newDirectory = this.curr_dir_name === "root" ? "root" : this.current_directory.replace("~", "root").split('/').pop();
+                let newCurrentDirectory = this.current_directory.replace("~", "root").split('/');
+                
+                for (let part of pathParts) {
+                    if (part === "..") {
+                        if (newCurrentDirectory.length > 1) {
+                            newCurrentDirectory.pop();
+                            newDirectory = newCurrentDirectory[newCurrentDirectory.length - 1];
+                        }
+                    } else if (part === "." || part === "") {
+                        continue;
+                    } else {
+                        if (this.child_directories[newDirectory] && this.child_directories[newDirectory].includes(part)) {
+                            newCurrentDirectory.push(part);
+                            newDirectory = part;
+                        } else {
+                            result = `bash: cd: ${rest}: No such file or directory`;
+                            break;
+                        }
+                    }
                 }
-
-                if (this.child_directories[this.curr_dir_name].includes(rest)) {
-                    this.current_directory += "/" + rest;
-                    this.curr_dir_name = rest;
-                }
-                else if (rest === "." || rest === ".." || rest === "../") {
-                    this.current_directory = "~";
-                    this.curr_dir_name = "root"
-                    break;
-                }
-                else {
-                    result = `bash: cd: ${words}: No such file or directory`;
+    
+                if (result === "") {
+                    this.current_directory = newCurrentDirectory.join('/').replace("root", "~");
+                    this.curr_dir_name = newDirectory;
                 }
                 break;
             case "ls":
@@ -221,10 +231,6 @@ export class Terminal extends Component {
                 }
                 if (target in this.child_directories) {
                     result = this.childDirectories(target).join("");
-                }
-                else if (target === "personal-documents") {
-                    result = "Nope! 🙃";
-                    break;
                 }
                 else {
                     result = `ls: cannot access '${words}': No such file or directory                    `;
@@ -240,13 +246,13 @@ export class Terminal extends Component {
                 break;
             case "pwd":
                 let str = this.current_directory;
-                result = str.replace("~", "/home/uriel")
+                result = str.replace("~", "/home/raj")
                 break;
             case "code":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("vscode");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg]";
                 }
                 break;
             case "echo":
@@ -256,56 +262,56 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("spotify");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "chrome":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("chrome");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "todoist":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("todo-ist");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "trash":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("trash");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
-            case "about-uriel":
+            case "about-raj":
                 if (words[0] === "." || words.length === 0) {
-                    this.props.openApp("about-uriel");
+                    this.props.openApp("about-raj");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "terminal":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("terminal");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "settings":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("settings");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "sendmsg":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("gedit");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "clear":
@@ -333,7 +339,7 @@ export class Terminal extends Component {
                 result = "<iframe class=' w-2/5' src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"></iframe>";
                 break;
             default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-uriel, todoist, trash, settings, sendmsg ]";
+                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-raj, todoist, trash, settings, sendmsg ]";
         }
         document.getElementById(`row-result-${rowId}`).innerHTML = result;
         this.appendTerminalRow();

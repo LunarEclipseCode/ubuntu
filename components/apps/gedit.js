@@ -15,7 +15,9 @@ export class Gedit extends Component {
             email: '',
             message: '',
             showErrorModal: false,
+            showSuccessModal: false,
             errorMessage: '',
+            successMessage: '', 
             showOtpDialog: false,
             verifiedEmails: JSON.parse(localStorage.getItem('verifiedEmails')) || [],
             otpValid: true,
@@ -91,8 +93,10 @@ export class Gedit extends Component {
 
         emailjs.send(serviceID, templateID, templateParams)
             .then(() => {
-                this.setState({ sending: false });
-                $('#close-gedit').trigger('click');
+                this.setState({ 
+                    sending: false ,
+                    showSuccessModal: true,
+                    successMessage: 'Email sent successfully!' });
             })
             .catch(() => {
                 this.setState({
@@ -162,8 +166,8 @@ export class Gedit extends Component {
                 verified: true,
                 verifying: false,
                 otpSent: false,
-                showErrorModal: true,
-                errorMessage: 'Email verified successfully!',
+                showSuccessModal: true,
+                successMessage: 'Email verified successfully!',
                 showOtpDialog: false,
             });
         } else {
@@ -187,8 +191,12 @@ export class Gedit extends Component {
         }
     };
 
+    closeSuccessModal = () => {
+        this.setState({ showSuccessModal: false });
+    };
+
     render() {
-        const { email, message, showErrorModal, errorMessage, verified, showOtpDialog, timer, otpValid } = this.state;
+        const { email, message, showErrorModal, errorMessage, verified, showOtpDialog, timer, otpValid, showSuccessModal, successMessage} = this.state;
         return (
             <div className="w-full h-full relative flex flex-col bg-ub-cool-grey text-white select-none">
                 <div className="flex items-center justify-between w-full bg-ub-gedit-light bg-opacity-60 border-b border-t border-blue-400 text-sm">
@@ -305,6 +313,21 @@ export class Gedit extends Component {
                         : null
                     )
                 }
+            {showSuccessModal ? (
+                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-70">
+                            <div className="bg-[#111111] w-80 rounded-lg">
+                                <div className="bg-[#201f1f] text-white py-1 px-3 flex justify-center rounded-t-lg">
+                                    <h2 className="text-white text-md font-semibold">Success</h2>
+                                </div>
+                                <div className="p-3">
+                                    <p className="mb-3 text-white">{successMessage}</p>
+                                    <div className="flex justify-end">
+                                        <button onClick={this.closeSuccessModal} className="bg-[#e05221] text-white px-4 py-1 rounded-md">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                ) : null}
             </div>
         );
     }

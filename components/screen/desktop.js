@@ -15,7 +15,6 @@ export class Desktop extends Component {
         super();
         this.app_stack = [];
         this.initFavourite = {};
-        this.allWindowClosed = false;
         this.state = {
             focused_windows: {},
             closed_windows: {},
@@ -273,7 +272,9 @@ export class Desktop extends Component {
                 }
 
                 windowsJsx.push(
-                    <Window key={index} {...props} />
+                    <div key={index} className={this.state.allAppsView ? 'hidden-whenallappsopen' : ''}>
+                        <Window {...props} />
+                    </div>
                 )
             }
         });
@@ -498,6 +499,13 @@ export class Desktop extends Component {
     render() {
         return (
             <div className={" h-full w-full flex flex-col items-end justify-start content-start flex-wrap-reverse pt-8 bg-transparent relative overflow-hidden overscroll-none window-parent"}>
+                <style>
+                    {`
+                    .hidden-whenallappsopen {
+                        display: none;
+                    }
+                    `}
+                </style>
 
                 {/* Window Area */}
                 <div className="absolute h-full w-full bg-transparent" data-context="desktop-area">
@@ -534,11 +542,14 @@ export class Desktop extends Component {
                     )
                 }
 
-                { this.state.allAppsView ?
-                    <AllApplications apps={apps}
+                {/* All Applications View */}
+                {this.state.allAppsView ? (
+                    <AllApplications
+                        apps={apps}
                         recentApps={this.app_stack}
-                        openApp={this.openApp} /> : null}
-
+                        openApp={this.openApp}
+                    />
+                ) : null}
             </div>
         )
     }

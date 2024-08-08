@@ -8,6 +8,8 @@ import { displayGedit } from './components/apps/gedit';
 import { displayAboutRaj } from './components/apps/me';
 // import { displayTalks } from './components/apps/me';
 import { displayTerminalCalc } from './components/apps/calc';
+import { displayNumWorks } from './components/apps/numworks';
+import { displayEditor } from './components/apps/editor';
 
 const apps = [
     {
@@ -90,6 +92,24 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         screen: displayGedit,
+    },
+    {
+        id: "numworks",
+        title: "NumWorks",
+        icon: './themes/Yaru/apps/numworks.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayNumWorks,
+    },
+    {
+        id: "editor",
+        title: "Text Editor",
+        icon: './themes/Yaru/apps/quill.svg',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayEditor,
     },
     // {
     //     id: "Talks",

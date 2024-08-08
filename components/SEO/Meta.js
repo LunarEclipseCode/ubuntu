@@ -4,6 +4,7 @@ import Head from 'next/head';
 export default function Meta() {
     return (
         <Head>
+            
            /* Primary Meta Tags */
             <title>Raj's Portfolio</title>
             <meta charSet="utf-8" />
@@ -40,6 +41,7 @@ export default function Meta() {
             <link rel="apple-touch-icon" href="images/logos/favicon.png" />
             <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" as="style" />
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"></link>
+            
         </Head>
     )
 }
